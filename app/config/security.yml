@@ -36,11 +36,3 @@ security:
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-
-sonata_page:
-    multisite: host
-    default_template: default # template key from templates section, used as default for
-    templates:
-        default:  { path: 'SonataPageBundle::layout.html.twig',          name: 'default' }
-        2columns: { path: 'SonataPageBundle::2columns_layout.html.twig', name: '2 columns layout' }
-
