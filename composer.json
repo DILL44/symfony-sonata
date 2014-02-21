@@ -1,0 +1,73 @@
+{
+    "name": "symfony/framework-standard-edition",
+    "license": "MIT",
+    "type": "project",
+    "description": "The \"Symfony Standard Edition\" distribution",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "~2.4",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.2",
+        "twig/extensions": "~1.0",
+        "symfony/assetic-bundle": "~2.3",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.4",
+        "sensio/distribution-bundle": "~2.3",
+        "sensio/framework-extra-bundle": "~3.0",
+        "sensio/generator-bundle": "~2.3",
+        "incenteev/composer-parameter-handler": "~2.0",
+
+        "sonata-project/admin-bundle": "*@stable",
+        "sonata-project/media-bundle": "*@stable",
+	"sonata-project/doctrine-orm-admin-bundle":"*@stable",
+	"sonata-project/block-bundle": "*@stable",
+	"sonata-project/news-bundle": "*@stable",
+	"sonata-project/seo-bundle": "*@stable",
+	"sonata-project/intl-bundle": "*@stable",
+	"sonata-project/page-bundle": "*@stable",
+	"sonata-project/user-bundle": "*@stable",
+	"sonata-project/markitup-bundle": "*@stable",
+	"sonata-project/easy-extends-bundle": "*@stable",
+	
+	"friendsofsymfony/user-bundle": "*@stable",
+	"friendsofsymfony/comment-bundle": "*@stable",
+
+	"knplabs/knp-paginator-bundle": "*@stable",
+	"knplabs/knp-menu-bundle": "*@stable",
+
+	"helios-ag/fm-elfinder-bundle": "*@stable",
+	"Trsteel/ckeditor-bundle":"*@stable"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        },
+        "branch-alias": {
+            "dev-master": "2.4-dev"
+        }
+    }
+}
