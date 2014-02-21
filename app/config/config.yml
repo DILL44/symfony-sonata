@@ -66,6 +66,7 @@ doctrine:
                 mappings:
                     ApplicationSonataUserBundle: ~
                     SonataUserBundle: ~
+                    FOSUserBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -80,6 +81,8 @@ sonata_block:
     blocks:
         sonata.user.block.menu:
         sonata.user.block.account:
+        sonata.block.service.text:
+        sonata.block.service.rss:
         sonata.admin.block.admin_list:
             contexts:   [admin]
 
@@ -98,3 +101,16 @@ fos_user:
 security:
     acl:
         connection: default
+
+sonata_admin:
+    security:
+        handler: sonata.admin.security.handler.acl
+
+        information:
+            GUEST:    [VIEW, LIST]
+            STAFF:    [EDIT, LIST, CREATE]
+            EDITOR:   [OPERATOR, EXPORT]
+            ADMIN:    [MASTER]
+
+        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
+        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
