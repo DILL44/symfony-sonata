@@ -14,7 +14,7 @@ pour charger le depot et composer
     sudo php ../composer.phar update
 pour charger les modules avec composer, al la fin il vous demandera les configuration de symfony
     
-    sudo chown -R koalas:koalas *
+    sudo chown -R [mon_user]:[mon_groupe] *
     app/console cache:clear`
     chmod g+w app/logs/dev.log
 pour générer les caches
