@@ -195,4 +195,50 @@ sonata_formatter:
                 - sonata.formatter.twig.control_flow
                 - sonata.formatter.twig.gist
                 - sonata.media.formatter.twig
+trsteel_ckeditor:
+    class: Trsteel\CkeditorBundle\Form\Type\CkeditorType
+    transformers: ['html_purifier']
+    toolbar: ['document', 'clipboard', 'editing', '/', 'basicstyles', 'paragraph', 'links', '/', 'insert', 'styles', 'tools']
+    toolbar_groups:
+        document: ['Source','-','Save','-','Templates']
+        clipboard: ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo']
+        editing: ['Find','Replace','-','SelectAll']
+        basicstyles: ['Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat']
+        paragraph: ['NumberedList','BulletedList','-','Outdent','Indent','-','JustifyLeft', 'JustifyCenter','JustifyRight','JustifyBlock']
+        links: ['Link','Unlink','Anchor']
+        insert: ['Image','Flash','Table','HorizontalRule']
+        styles: ['Styles','Format']
+        tools: ['Maximize', 'ShowBlocks']
+    ui_color: '#000000'
+    startup_outline_blocks: true
+    width: 800 #Integer or %
+    height: 300 #Integer or %
+    language: 'en-au'
+    filebrowser_upload_url:
+        url: relative-url.php?type=file
+    filebrowser_image_browse_url:
+        route: route_name
+        route_parameters:
+            type: image
 
+
+services:
+    sonata.news.admin.post:
+        class: Application\Sonata\NewsBundle\Admin\PostAdmin
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "sonata_blog"
+              label: "posts"
+              label_catalogue: "%sonata.news.admin.post.translation_domain%"
+              label_translator_strategy: "sonata.admin.label.strategy.underscore"
+        arguments:
+            - ~
+            - Application\Sonata\NewsBundle\Entity\Post
+            - SonataAdminBundle:CRUD
+        calls:
+            - [ setUserManager, [ @fos_user.user_manager ] ]
+            - [ setPoolFormatter, [ @sonata.formatter.pool ] ]
+            - [ addChild, [ @sonata.news.admin.comment ] ]
+            - [ setTranslationDomain, [ "%sonata.news.admin.post.translation_domain%" ] ]
+            - [ setCommentManager, [ @sonata.news.manager.comment ] ]
