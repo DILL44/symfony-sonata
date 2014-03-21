@@ -1,7 +1,7 @@
 symfony-sonata
 ==============
 
-Instalation
+Installation
 -----------
 
 Lancer depuis le terminal les commandes suivantes :
